@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100 font-normal px-5">
     <!-- app bar -->
-    <div class="flex items-center justify-between w-full  mt-10 mb-7">
+    <div class="md:hidden flex items-center justify-between w-full  mt-10 mb-7">
         <img src="../assets/images/Logo.png" alt="">
         <p class="text-slate-800 text-xl font-bold">ساعت هوشمند</p>
         <button class="bg-white shadow-lg rounded-md p-0.5 cursor-pointer">
@@ -19,7 +19,7 @@
         </button>
     </div>
     <!-- filter and sort -->
-    <div class="w-full flex justify-between items-center mb-7">
+    <div class="md:hidden w-full flex justify-between items-center mb-7">
         <div class="bg-white flex  items-center w-1/2 p-2 ml-1 rounded-md">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
@@ -34,16 +34,35 @@
         </div>
     </div>
     <!-- products section -->
-    <div class="grid grid-cols-2 gap-2 p-2">
-        <div class="bg-white rounded-md p-2">
-            <img src="../assets//images/image 7.png" class="w-full bg-gray-100 rounded-md" alt="">
-            
-        </div>
-        <div class="bg-slate-400">
-            2
-        </div>
+    <div class="grid grid-cols-2 gap-2 p-2 md:grid-cols-3 lg:grid-cols-4" x-data="{ products: [{id:1 , image:'../assets//images/image 7.png' , title:'اپل واتچ سری 7' ,price:'3,200,125'},{id:3 , image:'../assets/images/apple-w-6.png' , title:'اپل واتچ سری 6' ,price:'3,500,125'},{id:2 , image:'../assets//images/image 7.png' , title:'اپل واتچ سری 5' ,price:'3,000,125'}] }">
+        <!-- product card -->
+        <template x-for="product in products">
+            <div class="bg-white rounded-md px-2 py-3">
+                <div class="bg-gray-100 mb-2">
+                    <img :src="product.image" class="mx-auto rounded-md" alt="">
+                </div>
+                <div class="flex mb-2 justify-between items-center">
+                    <p class="text-slate-400 text-sm font-bold">اپل</p>
+                    <div class="flex ">
+                        <div class="bg-red-600 w-4 h-4 rounded-full"></div>
+                        <div class="bg-green-600 w-4 h-4 rounded-full"></div>
+                        <div class="bg-blue-600 w-4 h-4 rounded-full"></div>
+                    </div>
+                </div>
+                <!-- product card title -->
+                <h3 class="text-slate-900 text-md mb-3"  x-text="product.title"></h3>
+                <h3 class="text-center text-orange-600 mb-3" x-text="product.price"></h3>
+                <hr>
+                <button class="text-orange-500 mx-auto block p-1 mt-2 font-bold">مشاهده و سفارش</button>
+            </div>
+        </template>        
+        
+        
+        
+        
 
 
     </div>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
